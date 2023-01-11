@@ -1,3 +1,5 @@
+import scala.util.{Failure, Success, Try}
+
 package object monad {
 
   /**
@@ -9,19 +11,23 @@ package object monad {
 
     def get: A
 
-    def pure[R](x: R): Wrap[R] = ???
+    def pure[R](x: R): Wrap[R] = NonEmptyWrap(x)
 
     def flatMap[R](f: A => Wrap[R]): Wrap[R] = {
-      ???
+      Try(get) match {
+        case Success(value) => f(value)
+        case Failure(exception) => EmptyWrap
+      }
     }
 
     // HINT: map можно реализовать через pure и flatMap
-    def map[R](f: A => R): Wrap[R] = {
-      ???
-    }
+    def map[R](f: A => R): Wrap[R] = flatMap(v => pure(f(v)))
 
     def withFilter(f: A => Boolean): Wrap[A] = {
-      ???
+      Try(get) match {
+        case Success(insideValue) if f(insideValue) => pure(insideValue)
+        case _ => EmptyWrap
+      }
     }
 
   }

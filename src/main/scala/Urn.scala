@@ -8,7 +8,7 @@ class Urn {
     val firstBall = ballList(n1)
 
     val n2 = Random.nextInt(ballList.length - 1)
-    val secondBall = (ballList.take(n1) ++ ballList.drop(n1+1))(n2)
+    val secondBall = ballList.patch(n1, Nil, 1)(n2)
 
     firstBall == 1 || secondBall == 1
   }

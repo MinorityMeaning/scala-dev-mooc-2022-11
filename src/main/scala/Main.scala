@@ -55,8 +55,8 @@ object Main{
     println(promise.f1.isCompleted)
     promise.f1.foreach(println(_))
 
-    Thread.sleep(4000)
-    println(s"Hello, from ${Thread.currentThread().getName}")
+    //Thread.sleep(4000)
+    //println(s"Hello, from ${Thread.currentThread().getName}")
   }
 
 }

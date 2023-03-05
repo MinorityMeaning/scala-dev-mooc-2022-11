@@ -12,6 +12,29 @@ object Main{
 
   def main(args: Array[String]): Unit = {
 
+
+    trait BindableF[F[_]] {
+      def map[A, B](fa: F[A])(f: A => B): F[B]
+
+      def flatMap[A, B](fa: F[A])(f: A => F[B]): F[B]
+    }
+
+    implicit val convertedOption: BindableF[Option] = new BindableF[Option] {
+      override def map[A, B](fa: Option[A])(f: A => B): Option[B] = fa.map(f)
+
+      override def flatMap[A, B](fa: Option[A])(f: A => Option[B]): Option[B] = fa.flatMap(f)
+    }
+
+
+    def tupleF[F[_], A, B](fa: F[A], fb: F[B])(implicit b: BindableF[F]): F[(A, B)] = {
+      b.flatMap(fa)(a => b.map(fb)(a -> _))
+    }
+
+    val optA: Option[Int] = Some(1)
+    val optB: Option[Int] = Some(2)
+
+    println(tupleF(optA, optB))
+
 //    val t1 = new Thread1
 //    val t2 = new Thread1
 //    t1.start()

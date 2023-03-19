@@ -1,3 +1,4 @@
+import sbt.Keys.scalacOptions
 import sbt._
 
 object Dependencies {
@@ -15,6 +16,12 @@ object Dependencies {
     "dev.zio" %% "zio-test" % ZioVersion,
     "dev.zio" %% "zio-test-sbt" % ZioVersion,
     "dev.zio" %% "zio-macros" % ZioVersion
+  )
+
+  lazy val zioConfig: Seq[ModuleID] = Seq(
+    "dev.zio" %% "zio-config" % "1.0.5",
+    "dev.zio" %% "zio-config-magnolia" % "1.0.5",
+    "dev.zio" %% "zio-config-typesafe" % "1.0.5"
   )
 
 }

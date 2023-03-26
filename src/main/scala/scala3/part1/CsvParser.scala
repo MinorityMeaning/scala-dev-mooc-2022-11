@@ -25,7 +25,7 @@ class MonadParser[T, Src](private val p: Src => (T, Src)):
     }
   def parse(src: Src): T = p(src)._1
 
-
+end MonadParser
 
 
 object MonadParser:
@@ -91,3 +91,5 @@ object TestExecution:
     val result = str.split('\n').map(parser.parse)
 
     println(result.map(x=>s"${x.model},${x.mark},${x.year}").mkString(";"))
+
+end TestExecution

@@ -114,7 +114,7 @@ object functional_effects {
       object Console{
 
         def succeed[A](v: => A): Console[A] = Succeed(() => v)
-        def printLine(str: String): Console[Unit] = PrintLine(str, succeed())
+       // def printLine(str: String): Console[Unit] = PrintLine(str, succeed())
         def readLine: Console[String] = ReadLine(str => succeed(str))
 
 
@@ -134,15 +134,15 @@ object functional_effects {
       )
 
       val p2 = for{
-        _ <- Console.printLine("Как тебя зовут?")
+        //_ <- Console.printLine("Как тебя зовут?")
         name <- Console.readLine
-        _ <- Console.printLine(s"Привет, $name")
+        //_ <- Console.printLine(s"Привет, $name")
       } yield ()
 
       val p3 = for {
-        _<- Console.printLine("Сколько тебе лет?")
+        //_<- Console.printLine("Сколько тебе лет?")
         age <- Console.readLine
-        _ <- if (age.toInt >= 18) Console.printLine("Можешь проходить") else Console.printLine("Ты еще не можешь пройти")
+        //_ <- if (age.toInt >= 18) Console.printLine("Можешь проходить") else Console.printLine("Ты еще не можешь пройти")
       } yield ()
 
 

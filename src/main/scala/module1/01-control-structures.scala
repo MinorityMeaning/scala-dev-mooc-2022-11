@@ -52,10 +52,10 @@ object controlStructures {
    */
 
 
-  val x: Unit = do{
-    println("hey")
-
-  } while (cond)
+//  val x: Unit = do {
+//    println("hey")
+//
+//  } while (cond)
 
   /**
    * цикл for позволяет итерироваться по коллекциям,

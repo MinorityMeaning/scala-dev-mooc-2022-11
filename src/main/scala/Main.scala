@@ -1,77 +1,100 @@
-import module1.threads.{Thread1, ToyFuture, getRatesLocation1, getRatesLocation2, getRatesLocation3, getRatesLocation4, getRatesLocation5, getRatesLocation6, printRunningTime}
-import module1.{functions, future, promise, type_system}
-import module2.implicits.{implicit_conversions, implicit_scopes}
-import module3.functional_effects
-import functional_effects.functionalProgram.declarativeEncoding
-import functional_effects.functionalProgram.executableEncoding
-
-import scala.util.Try
-
-object Main{
-
-
-  def main(args: Array[String]): Unit = {
-
-//    val t1 = new Thread1
-//    val t2 = new Thread1
-//    t1.start()
-//    t1.join()
-//    t2.start()
-
-//    def rates = {
+//import module1.threads.{Thread1, ToyFuture, getRatesLocation1, getRatesLocation2, getRatesLocation3, getRatesLocation4, getRatesLocation5, getRatesLocation6, printRunningTime}
+//import module1.{functions, future, promise, type_system}
+//import module2.implicits.{implicit_conversions, implicit_scopes}
+//import module3.functional_effects
+//import functional_effects.functionalProgram.declarativeEncoding
+//import functional_effects.functionalProgram.executableEncoding
 //
-//      getRatesLocation5.onComplete{ i1 =>
-//        getRatesLocation6.onComplete{ i2 =>
-//          println(i1 + i2)
-//        }
-//      }
+//import scala.util.Try
 //
-//      for{
-//        i1 <- getRatesLocation5
-//        i2 <- getRatesLocation6
+//object Main{
 //
-//      } yield i1 + i2
 //
+//  def main(args: Array[String]): Unit = {
+//
+//
+//    trait BindableF[F[_]] {
+//      def map[A, B](fa: F[A])(f: A => B): F[B]
+//
+//      def flatMap[A, B](fa: F[A])(f: A => F[B]): F[B]
 //    }
 //
-//    printRunningTime(rates)
-    import scala.concurrent.ExecutionContext.Implicits.global
-
-//    def rates = for{
-//      r1 <- future.getRatesLocation1
-//      r2 <- future.getRatesLocation2
-//    } yield  r1 + r2
+//    implicit val convertedOption: BindableF[Option] = new BindableF[Option] {
+//      override def map[A, B](fa: Option[A])(f: A => B): Option[B] = fa.map(f)
 //
-//    def rates2 = future.getRatesLocation1.flatMap(
-//      r1 => future.getRatesLocation2.map(r2 => r1 + r2)
-//    )
-
-    //future.printRunningTime(rates)
-
-//    future.f8.foreach{
-//      println(_)
+//      override def flatMap[A, B](fa: Option[A])(f: A => Option[B]): Option[B] = fa.flatMap(f)
 //    }
-
-//    println(promise.p1.isCompleted)
-//    println(promise.f1.isCompleted)
-//    promise.p1.complete(Try(10))
-//    println(promise.p1.isCompleted)
-//    println(promise.f1.isCompleted)
-//    promise.f1.foreach(println(_))
 //
-//    Thread.sleep(4000)
-
-
-    //implicit_conversions.res
-    // implicit_scopes.result
-  //  println(s"Hello, from ${Thread.currentThread().getName}")
-
-//    val r: executableEncoding.Console[Unit] = executableEncoding.p3
-//    val r2: declarativeEncoding.Console[Unit] = declarativeEncoding.p2
-//    declarativeEncoding.interpret(r2)
-
-
-
-  }
-
-}
+//
+//    def tupleF[F[_], A, B](fa: F[A], fb: F[B])(implicit b: BindableF[F]): F[(A, B)] = {
+//      b.flatMap(fa)(a => b.map(fb)(a -> _))
+//    }
+//
+//    val optA: Option[Int] = Some(1)
+//    val optB: Option[Int] = Some(2)
+//
+//    println(tupleF(optA, optB))
+//
+////    val t1 = new Thread1
+////    val t2 = new Thread1
+////    t1.start()
+////    t1.join()
+////    t2.start()
+//
+////    def rates = {
+////
+////      getRatesLocation5.onComplete{ i1 =>
+////        getRatesLocation6.onComplete{ i2 =>
+////          println(i1 + i2)
+////        }
+////      }
+////
+////      for{
+////        i1 <- getRatesLocation5
+////        i2 <- getRatesLocation6
+////
+////      } yield i1 + i2
+////
+////    }
+////
+////    printRunningTime(rates)
+//    import scala.concurrent.ExecutionContext.Implicits.global
+//
+////    def rates = for{
+////      r1 <- future.getRatesLocation1
+////      r2 <- future.getRatesLocation2
+////    } yield  r1 + r2
+////
+////    def rates2 = future.getRatesLocation1.flatMap(
+////      r1 => future.getRatesLocation2.map(r2 => r1 + r2)
+////    )
+//
+//    //future.printRunningTime(rates)
+//
+////    future.f8.foreach{
+////      println(_)
+////    }
+//
+////    println(promise.p1.isCompleted)
+////    println(promise.f1.isCompleted)
+////    promise.p1.complete(Try(10))
+////    println(promise.p1.isCompleted)
+////    println(promise.f1.isCompleted)
+////    promise.f1.foreach(println(_))
+////
+////    Thread.sleep(4000)
+//
+//
+//    //implicit_conversions.res
+//    // implicit_scopes.result
+//  //  println(s"Hello, from ${Thread.currentThread().getName}")
+//
+////    val r: executableEncoding.Console[Unit] = executableEncoding.p3
+////    val r2: declarativeEncoding.Console[Unit] = declarativeEncoding.p2
+////    declarativeEncoding.interpret(r2)
+//
+//
+//
+//  }
+//
+//}

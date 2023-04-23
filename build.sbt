@@ -37,6 +37,8 @@ libraryDependencies ++= Dependencies.zioConfig
 libraryDependencies ++= Dependencies.testContainers
 libraryDependencies ++= Dependencies.quill
 libraryDependencies ++= Dependencies.circe
+// https://mvnrepository.com/artifact/org.typelevel/cats-effect
+libraryDependencies += "org.typelevel" %% "cats-effect" % "3.4.8"
 
 // Here, `libraryDependencies` is a set of dependencies, and by using `+=`,
 // we're adding the scala-parser-combinators dependency to the set of dependencies
